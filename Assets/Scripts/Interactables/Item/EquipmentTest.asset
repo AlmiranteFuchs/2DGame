@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: ShitTowear
+  m_Name: EquipmentTest
   m_EditorClassIdentifier: Assembly-CSharp::Equipament
-  itemName: Shit2Wear
+  itemName: EquipForWizard
   itemIcon: {fileID: 21300000, guid: a7f17951e1e1e9f44b8d77176025e5bd, type: 3}
   isDefault: 0
+  choose: 0
   equipamentSlot: 0
   armorModifier: 0
   damageModifier: 0

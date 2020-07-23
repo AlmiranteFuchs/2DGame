@@ -14,7 +14,6 @@ public class UIInventorySlot : MonoBehaviour
         icon.enabled=true;
         removeBtn.interactable=true;
         icon.sprite=_item.itemIcon;
-        Debug.Log("AAAAAAAAAAAAAAAAAA");
     }
 
     public void ClearSlot()

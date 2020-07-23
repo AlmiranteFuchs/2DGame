@@ -19,7 +19,12 @@ public class PlayerInteracter : MonoBehaviour
             //ativar reação gui q da pra interagir
             canInteract=true;
             interactFocus=other.gameObject;
-        }   
+        }
+        if(other.CompareTag("SoloInteractable")){
+            canInteract=true;
+            interactFocus=other.gameObject;
+            Interact();
+        }
     }
     void OnTriggerExit2D(Collider2D other)
     {   

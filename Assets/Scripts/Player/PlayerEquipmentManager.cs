@@ -15,27 +15,34 @@ public class PlayerEquipmentManager : MonoBehaviour
 
     public delegate void OnEquipmentChanged(Equipament _newItem, Equipament _oldItem);
     public OnEquipmentChanged onEquipmentChanged;
-    Equipament[] currentEquipments;
+    public Equipament[] currentEquipments;
     void Start()
     {
         int numSlots = System.Enum.GetNames(typeof(EquipamentSlot)).Length;
         currentEquipments = new Equipament[numSlots];
     }
 
-    public void Equip(Equipament _newItem)
+    public bool Equip(Equipament _newItem)
     {
-        int slotIndex = (int)_newItem.equipamentSlot;
-        Equipament oldItem = null;
-        if (currentEquipments[slotIndex] != null)
+        if (_newItem.choose == SystemReferences.instance.playerRef.GetComponent<CharController>().choose)
         {
-            oldItem = currentEquipments[slotIndex];
-            PlayerInventory.instance.AddItem(oldItem);
+            int slotIndex = (int)_newItem.equipamentSlot;
+            Equipament oldItem = null;
+            if (currentEquipments[slotIndex] != null)
+            {
+                oldItem = currentEquipments[slotIndex];
+                PlayerInventory.instance.AddItem(oldItem);
+            }
+            if (onEquipmentChanged != null)
+            {
+                onEquipmentChanged.Invoke(_newItem, oldItem);
+            }
+            currentEquipments[slotIndex] = _newItem;
+            return true;
+        }else{
+            Debug.Log("Inconpatible item for class");
+            return false;
         }
-        if (onEquipmentChanged != null)
-        {
-            onEquipmentChanged.Invoke(_newItem, oldItem);
-        }
-        currentEquipments[slotIndex] = _newItem;
     }
 
     public void UnEquip(int _slotIndex)

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f5ea5c02dbf3ad4caa6f294ad89ce2e, type: 3}
+  m_Name: "GolpeGirat\xF3rio"
+  m_EditorClassIdentifier: 
+  skillName: "Golpe Girat\xF3rio"
+  skillDesc: "O guerreiro realiza um giro 360\xB0 aplicando dano em todos a sua volta"
+  chooseClass: 1
+  skillIdentification: 0
+  skillManaCost: 0
+  skillHealthCost: 0
+  skillCoolDown: 10
+  skillDamage: 10
+  manaValue: 0
+  passive: 0
+  controller: {fileID: 0}
+  behaviour: {fileID: 3616824559494876184, guid: 5b63ed83d2649f84eab0d33abee85380,
+    type: 3}
+  inCooldown: 0

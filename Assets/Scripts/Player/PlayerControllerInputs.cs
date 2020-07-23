@@ -25,7 +25,22 @@ public class PlayerControllerInputs : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.I))
         {
-            SystemReferences.instance.UIinventory.gameObject.SetActive(!SystemReferences.instance.UIinventory.gameObject.activeSelf);
+            SystemReferences.instance.UIinventory.transform.GetChild(0).gameObject.SetActive(!SystemReferences.instance.UIinventory.transform.GetChild(0).gameObject.activeSelf);
+        }
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            for (int i = 0; i < this.gameObject.GetComponent<PlayerEquipmentManager>().currentEquipments.Length; i++)
+            {
+                this.gameObject.GetComponent<PlayerEquipmentManager>().UnEquip(i);
+            }
+        }
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
+        if(Input.GetMouseButtonDown(0)){
+            //Attack
+            Debug.Log(this.gameObject.GetComponent<PlayerStats>().attackDamage);
         }
     }
 
@@ -67,6 +82,9 @@ public class PlayerControllerInputs : MonoBehaviour
         {
             //GetComponent<GunsController>().ShootGun(pshootingDirection.x, pshootingDirection.y);
             //Debug.Log(GetComponent<CharacterStats>().damage);
+        }
+        if(Input.GetMouseButtonDown(1)){
+            GetComponent<SkillController>().UseSkill();
         }
     }
 }
