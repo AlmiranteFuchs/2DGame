@@ -5,30 +5,38 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Skills/Skill Base")]
 public class SkillBase : ScriptableObject
 {
-    //CREATE THAT INHERTIS FROM HERE DEBUFF SCRIPTABLE OBJECTS THAN MAKE DEBUFFS SCRITABLES
-    [Header("Skill Characteristic")]
+    [Header("[Skill Characteristics]")]
     [SerializeField]
-    string skillName, skillDesc;
+    string skillName;
+    [SerializeField]
+    string skillDesc;
 
     [SerializeField]
     ChooseClass chooseClass;
+
     [SerializeField]
     int skillIdentification;
     public int skillId { get { return skillIdentification; } private set { skillIdentification = value; } }
 
-    [Header("Specs")]
+    [Header("[Specs]")]
     [SerializeField]
-    float skillManaCost, skillHealthCost, skillCoolDown, skillDamage;
-    public float skillDmg { get { return skillDamage; } private set { skillDamage = value; } }
+    float _skillManaCost;
     [SerializeField]
-    private float manaValue;
+    float _skillHealthCost, _skillCoolDown, _skillDamage;
+    public float skillManaCost { get { return _skillManaCost; } private set { _skillManaCost = value; } }
+    public float skillHealthCost { get { return _skillHealthCost; } private set { _skillHealthCost = value; } }
+    public float skillCoolDown { get { return _skillCoolDown; } private set { _skillCoolDown = value; } }
+    public float skillDamage { get { return _skillDamage; } private set { _skillDamage = value; } }
 
     [SerializeField]
     bool passive;
 
-    [Header("Behaviour")]
-    public SkillController controller;
+    [Header("[Behaviour]")]
     public GameObject behaviour;
+    public SkillController skillController; // Controller que ta instanciando a habilidade
+
+    [Header("[SFX and Stuff]")]
+    public AnimationClip skillAnimation;
 
 
 
@@ -38,18 +46,17 @@ public class SkillBase : ScriptableObject
 
     void Awake()
     {
-        behaviour.GetComponent<SkllBehaviour>().skillParent = this;
+        behaviour.GetComponent<SkllBehaviour>().skillBaseParent = this;
         //inCooldown=false;
         if (passive)
         {
-            controller=SystemReferences.instance.playerRef.GetComponent<SkillController>();
             UseSkill();
         }
     }
 
     public void UseSkill()
     {
-        if (skillCoolDown != 0)
+        if (_skillCoolDown != 0)
         {
             if (!Usable())
             {
@@ -58,8 +65,20 @@ public class SkillBase : ScriptableObject
             }
             else
             {
-                controller.StartCoroutine(CoolDown());
+                skillController.StartCoroutine(CoolDown());
                 behaviour.GetComponent<SkllBehaviour>().Behaviour();
+                if (skillAnimation != null)
+                {
+
+                    Animator anim = SystemReferences.instance.playerRef.GetComponent<Animator>();
+                    AnimatorOverrideController animatorOverrideController = new AnimatorOverrideController(anim.runtimeAnimatorController);
+                    //animatorOverrideController.runtimeAnimatorController = anim.runtimeAnimatorController;
+                    animatorOverrideController["Skill_Animation"] = skillAnimation;
+                    anim.runtimeAnimatorController = animatorOverrideController;
+                    anim.Play("Skill_Animation");
+
+                }
+                else { Debug.Log("Skill Animation null"); }
             }
         }
     }
@@ -70,11 +89,11 @@ public class SkillBase : ScriptableObject
         //Mana, cooldown
         if (!inCooldown)
         {
-            if (skillManaCost == 0)
+            if (_skillManaCost == 0)
             {
                 return true;
             }
-            else if (controller.charStats.mana >= skillManaCost)
+            else if (skillController.charStats.manaCurr >= _skillManaCost)
             {
                 return true;
             }
@@ -86,7 +105,7 @@ public class SkillBase : ScriptableObject
     IEnumerator CoolDown()
     {
         inCooldown = true;
-        yield return new WaitForSeconds(skillCoolDown);
+        yield return new WaitForSeconds(_skillCoolDown);
         inCooldown = false;
     }
 }

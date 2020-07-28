@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: EquipmentTestWarrior
+  m_Name: aaa
   m_EditorClassIdentifier: Assembly-CSharp::Equipament
-  itemName: Warriro
-  itemIcon: {fileID: 21300000, guid: d92fe85b3c6aff2439f9c610d845b7f5, type: 3}
+  itemName: Equip
+  itemIcon: {fileID: 21300000, guid: a7f17951e1e1e9f44b8d77176025e5bd, type: 3}
   isDefault: 0
-  choose: 1
+  choose: 0
   equipamentSlot: 0
   armorModifier: 0
   damageModifier: 0

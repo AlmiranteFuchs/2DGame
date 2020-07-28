@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using UnityEngine;
-
 public class PlayerControllerInputs : MonoBehaviour
 {
     public Vector2 pmovementDirection, pshootingDirection, pmousePosition;
@@ -21,7 +20,7 @@ public class PlayerControllerInputs : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            SystemReferences.instance.playerRef.GetComponent<PlayerInteracter>().Interact();
+            SystemReferences.instance.playerRef.transform.Find("InteractRadius").GetComponent<PlayerInteracter>().Interact();
         }
         if (Input.GetKeyDown(KeyCode.I))
         {
@@ -38,9 +37,17 @@ public class PlayerControllerInputs : MonoBehaviour
         {
             return;
         }
-        if(Input.GetMouseButtonDown(0)){
-            //Attack
-            Debug.Log(this.gameObject.GetComponent<PlayerStats>().attackDamage);
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            GetComponent<SkillController>().UseSkill(0);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            GetComponent<SkillController>().UseSkill(1);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            GetComponent<SkillController>().UseSkill(2);
         }
     }
 
@@ -78,13 +85,14 @@ public class PlayerControllerInputs : MonoBehaviour
             //GetComponent<GunsController>().UpdateTip(false);
             //SystemReferences.instance.shootRotation.transform.position= SystemReferences.instance.rHand.transform.position;
         }
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
-            //GetComponent<GunsController>().ShootGun(pshootingDirection.x, pshootingDirection.y);
-            //Debug.Log(GetComponent<CharacterStats>().damage);
+            //Attack
+            Debug.Log(this.gameObject.GetComponent<PlayerStats>().attackDmg);
         }
-        if(Input.GetMouseButtonDown(1)){
-            GetComponent<SkillController>().UseSkill();
+        if (Input.GetMouseButtonDown(1))
+        {
+            //Nada por enquanto
         }
     }
 }

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3220c43b2aa03c4dae3b8bb0ea0adfe, type: 3}
   m_Name: InvItem
   m_EditorClassIdentifier: 
-  itemName: ShakeIt
+  itemName: NormalItem
   itemIcon: {fileID: 21300000, guid: be6ce9b09323c53458dfc9e0c6395544, type: 3}
   isDefault: 0

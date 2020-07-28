@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class SkillEffects : SkillBase
 {
+    //Provavelmente eu vou descontinuar isso tudo aqui, mais fácil fzr behaviour próprio pra cada 
+    //skill
     public bool isInstant;
     public float effectDuration, effectInterval;
     public float effectDamage, effectHeal, effectBuffArmor, effectBuffDamage;
+    private bool stop = false;
 
-    public bool stop = false;
+
+
 
     public void ApplyEffect(GameObject[] _targets, MonoBehaviour _caller)
     {
@@ -17,8 +21,8 @@ public class SkillEffects : SkillBase
         {
             for (int i = 0; i < _targets.Length; i++)
             {
-                _targets[i].GetComponent<CharacterStats>().TakeDamage(effectDamage);
-                _targets[i].GetComponent<CharacterStats>().TakeHeal(effectHeal);
+                _targets[i].GetComponent<CharController>().GetDamage(effectDamage);
+                _targets[i].GetComponent<CharController>().GetHeal(effectHeal);
                 _targets[i].GetComponent<CharacterStats>().armorModifier.AddModifier(effectBuffArmor);
                 _targets[i].GetComponent<CharacterStats>().armorModifier.AddModifier(effectBuffDamage);
             }
@@ -43,8 +47,8 @@ public class SkillEffects : SkillBase
         {
             for (int x = 0; x < _targets.Length; x++)
             {
-                _targets[x].GetComponent<CharacterStats>().TakeDamage(effectDamage);
-                _targets[x].GetComponent<CharacterStats>().TakeHeal(effectHeal);
+                _targets[x].GetComponent<CharController>().GetDamage(effectDamage);
+                _targets[x].GetComponent<CharController>().GetHeal(effectHeal);
                 _targets[x].GetComponent<CharacterStats>().armorModifier.AddModifier(effectBuffArmor);
                 _targets[x].GetComponent<CharacterStats>().armorModifier.AddModifier(effectBuffDamage);
                 Debug.Log("Algo acontece!");

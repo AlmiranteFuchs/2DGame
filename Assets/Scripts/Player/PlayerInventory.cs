@@ -24,7 +24,6 @@ public class PlayerInventory : MonoBehaviour
     public int inventorySpace = 20;
     public bool AddItem(Item _item)
     {
-        //CHECK CLASS BEFORE ADD
         //CHECK IF PLAYER CAN CARRY THE ITEM
         if (items.Count >= inventorySpace)
         {

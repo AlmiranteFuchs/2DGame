@@ -7,7 +7,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f5ea5c02dbf3ad4caa6f294ad89ce2e, type: 3}
   m_Name: "GolpeGirat\xF3rio"
@@ -16,13 +16,13 @@ MonoBehaviour:
   skillDesc: "O guerreiro realiza um giro 360\xB0 aplicando dano em todos a sua volta"
   chooseClass: 1
   skillIdentification: 0
-  skillManaCost: 0
-  skillHealthCost: 0
-  skillCoolDown: 10
-  skillDamage: 10
-  manaValue: 0
+  _skillManaCost: 1
+  _skillHealthCost: 0
+  _skillCoolDown: 10
+  _skillDamage: 5
   passive: 0
-  controller: {fileID: 0}
   behaviour: {fileID: 3616824559494876184, guid: 5b63ed83d2649f84eab0d33abee85380,
     type: 3}
+  skillController: {fileID: 0}
+  skillAnimation: {fileID: 7400000, guid: f55bcfbb9e98aa547b6e7dbe18a946b8, type: 2}
   inCooldown: 0

@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Equipment", menuName = "Inventory/Equipment")]
+[CreateAssetMenu(menuName = "Inventory/Equipment")]
 public class Equipament : Item
 {
     public ChooseClass choose;
     public EquipamentSlot equipamentSlot;
     public float armorModifier, damageModifier;
-
-
-
     public override void UseItem()
     {
         bool yea = PlayerEquipmentManager.instance.Equip(this);
